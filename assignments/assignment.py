@@ -65,7 +65,7 @@ class AdversarialExamples:
 
     def pca_adversarial_data(self, n_samples, n_features):
         cluster1_mean = [0, 0]
-        cluster2_mean = [0, 1]  # Adjusted mean of the second cluster
+        cluster2_mean = [0, 3]  # Adjusted mean of the second cluster
         cluster1_covariance = [[1, 0.5], [0.5, 1]]
         cluster2_covariance = [
             [1, 0],
