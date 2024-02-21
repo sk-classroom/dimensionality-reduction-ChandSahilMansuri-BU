@@ -54,14 +54,13 @@ class LinearDiscriminantAnalysis:
         return np.dot(X, self.components)
 
 
-# Generate adversarial examples for PCA
 class AdversarialExamples:
     def __init__(self) -> None:
         pass
 
     def pca_adversarial_data(self, n_samples, n_features):
-        cluster1_mean = [1, 1]
-        cluster2_mean = [5, 5]
+        cluster1_mean = [0, 0]
+        cluster2_mean = [6, 6]
         cluster1_covariance = [[1, 0.5], [0.5, 1]]
         cluster2_covariance = [[1, -0.5], [-0.5, 1]]
         
