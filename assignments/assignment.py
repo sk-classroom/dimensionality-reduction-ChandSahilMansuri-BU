@@ -64,16 +64,17 @@ class AdversarialExamples:
         pass
 
     def pca_adversarial_data(self, n_samples, n_features):
-        cluster1_mean = [0, 0]
-        cluster2_mean = [5, 5]  # Increased separation between means
-        cluster1_covariance = [[1, 0.5], [0.5, 1]]
-        cluster2_covariance = [[1, 0], [0, 1]]
+        cluster1_mean = [0] * n_features
+        cluster2_mean = [2] * n_features  # Increased separation between means
+        cluster_covariance = np.eye(
+            n_features
+        )  # Identity matrix as covariance for simplicity
 
         cluster1_data = np.random.multivariate_normal(
-            cluster1_mean, cluster1_covariance, n_samples
+            cluster1_mean, cluster_covariance, n_samples
         )
         cluster2_data = np.random.multivariate_normal(
-            cluster2_mean, cluster2_covariance, n_samples
+            cluster2_mean, cluster_covariance, n_samples
         )
 
         X = np.vstack((cluster1_data, cluster2_data))
