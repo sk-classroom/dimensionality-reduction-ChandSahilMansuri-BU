@@ -1,5 +1,6 @@
 import numpy as np
-from sklearn.decomposition import PCA
+from typing import Any
+
 
 class PrincipalComponentAnalysis:
     def __init__(self, n_components: int) -> None:
@@ -8,22 +9,17 @@ class PrincipalComponentAnalysis:
         self.mean = None
 
     def fit(self, X: np.ndarray):
-        # Normalize the data
-        X_normalized = (X - X.mean(axis=0)) / X.std(axis=0)
-        
-        # Perform PCA
-        pca = PCA(n_components=self.n_components)
-        pca.fit(X_normalized)
-        
-        self.components = pca.components_
-        self.mean = pca.mean_
+        self.mean = np.mean(X, axis=0)
+        X_centered = X - self.mean
+        covariance_matrix = np.cov(X_centered, rowvar=False)
+        eigenvalues, eigenvectors = np.linalg.eig(covariance_matrix)
+        indices = np.argsort(eigenvalues)[::-1]
+        self.components = eigenvectors[:, indices[: self.n_components]]
 
     def transform(self, X: np.ndarray) -> np.ndarray:
-        # Normalize the data
-        X_normalized = (X - self.mean) / np.std(X, axis=0)
-        
-        # Transform data using PCA components
-        return np.dot(X_normalized, self.components.T)
+        X_centered = X - self.mean
+        return np.dot(X_centered, self.components)
+
 
 class LinearDiscriminantAnalysis:
     def __init__(self, n_components: int) -> None:
@@ -62,6 +58,7 @@ class LinearDiscriminantAnalysis:
     def transform(self, X: np.ndarray) -> np.ndarray:
         return np.dot(X, self.components)
 
+
 class AdversarialExamples:
     def __init__(self) -> None:
         pass
@@ -83,9 +80,3 @@ class AdversarialExamples:
         y = np.hstack((np.zeros(n_samples), np.ones(n_samples)))
 
         return X, y
-
-# Usage example
-pca = PrincipalComponentAnalysis(n_components=2)
-X = np.random.randn(100, 10)  # Example data
-pca.fit(X)
-X_pca = pca.transform(X)
