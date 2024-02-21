@@ -65,7 +65,7 @@ class AdversarialExamples:
 
     def pca_adversarial_data(self, n_samples, n_features):
         cluster1_mean = [0, 0]
-        cluster2_mean = [5.7, 5.7]  # Increased separation between means
+        cluster2_mean = [5.6, 5.6]  # Increased separation between means
         cluster1_covariance = [[1, 0.5], [0.5, 1]]
         cluster2_covariance = [[1, 0], [0, 1]]
 
