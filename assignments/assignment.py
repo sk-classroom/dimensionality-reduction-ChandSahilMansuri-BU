@@ -64,10 +64,10 @@ class AdversarialExamples:
         pass
 
     def pca_adversarial_data(self, n_samples, n_features):
-        cluster1_mean = [-2, -2]
-        cluster2_mean = [2, 2]  # Increased separation between means
+        cluster1_mean = [-3, -3]
+        cluster2_mean = [3, 3]  # Increased separation between means
         cluster1_covariance = [[1, 0.5], [0.5, 1]]
-        cluster2_covariance = [[1, 0.5], [1, 0.5]]
+        cluster2_covariance = [[1, 0.5], [0.5, 1]]
 
         cluster1_data = np.random.multivariate_normal(
             cluster1_mean, cluster1_covariance, n_samples
