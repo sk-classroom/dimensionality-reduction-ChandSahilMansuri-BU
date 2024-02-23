@@ -66,7 +66,7 @@ class AdversarialExamples:
     def pca_adversarial_data(self, n_samples, n_features):
         # Define cluster means and covariance matrices
         mean1 = np.array([0, 5])
-        cov1 = np.array([[8, 0.5], [0.5, 2]])
+        cov1 = np.array([[6, 0.5], [0.5, 2]])
         mean2 = np.array([10, 5])
         cov2 = np.array([[1, -0.5], [-0.5, 1]])
 
