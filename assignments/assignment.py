@@ -79,3 +79,4 @@ class AdversarialExamples:
         y = np.concatenate((np.zeros(n_samples // 2), np.ones(n_samples // 2)))
 
         return X, y
+    
