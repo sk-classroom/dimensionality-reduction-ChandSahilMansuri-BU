@@ -60,23 +60,22 @@ class LinearDiscriminantAnalysis:
 
 
 class AdversarialExamples:
-    def __init__(self) -> None:
+    def __init__(self):
         pass
 
     def pca_adversarial_data(self, n_samples, n_features):
-        cluster1_mean = [-2, -2]
-        cluster2_mean = [2, 2]  # Increased separation between means
-        cluster1_covariance = [[-9, 0], [-8, 0.4]]
-        cluster2_covariance = [[11, 1], [4, 0.1]]
+        # Define cluster means and covariance matrices
+        mean1 = np.array([0, 5])
+        cov1 = np.array([[1, 0.5], [0.5, 2]])
+        mean2 = np.array([10, 5])
+        cov2 = np.array([[2, -0.5], [-0.5, 1]])
 
-        cluster1_data = np.random.multivariate_normal(
-            cluster1_mean, cluster1_covariance, n_samples
-        )
-        cluster2_data = np.random.multivariate_normal(
-            cluster2_mean, cluster2_covariance, n_samples
-        )
+        # Generate samples from each cluster
+        X1 = np.random.multivariate_normal(mean1, cov1, size=n_samples // 2)
+        X2 = np.random.multivariate_normal(mean2, cov2, size=n_samples // 2)
 
-        X = np.vstack((cluster1_data, cluster2_data))
-        y = np.hstack((np.zeros(n_samples), np.ones(n_samples)))
+        # Combine samples and labels
+        X = np.concatenate((X1, X2), axis=0)
+        y = np.concatenate((np.zeros(n_samples // 2), np.ones(n_samples // 2)))
 
         return X, y
