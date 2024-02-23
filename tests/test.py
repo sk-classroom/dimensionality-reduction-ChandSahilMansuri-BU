@@ -84,7 +84,7 @@ class TestAdversarialExample(unittest.TestCase):
             score = normalized_mutual_info_score(y, y_pred)
             score_transformed = normalized_mutual_info_score(y, y_pred_transformed)
 
-            if score > 0.99 and score_transformed < min_score:
+            if score > 0.99 and score_transformed > 2:
                 break
 
         assert (
