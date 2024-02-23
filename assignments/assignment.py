@@ -67,7 +67,7 @@ class AdversarialExamples:
         cluster1_mean = [-2, -2]
         cluster2_mean = [2, 2]  # Increased separation between means
         cluster1_covariance = [[-9, 0], [-8, 0.4]]
-        cluster2_covariance = [[0.4, 1], [0.7, 0.1]]
+        cluster2_covariance = [[11, 1], [4, 0.1]]
 
         cluster1_data = np.random.multivariate_normal(
             cluster1_mean, cluster1_covariance, n_samples
